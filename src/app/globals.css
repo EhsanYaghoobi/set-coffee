@@ -83,6 +83,12 @@ a {
   font-weight: 1000;
 }
 
+.gallery-slider {
+  --swiper-navigation-size: 26px !important;
+  --swiper-navigation-color: #070707 !important;
+  --swiper-navigation-font-weight: 1000;
+}
+
 .swiper-slide {
   text-align: center;
   font-size: 18px;
@@ -121,6 +127,11 @@ a {
 .articles_slider:hover .swiper-button-next {
   opacity: 1;
   transition: transform 0.7s ease, opacity 0.7s ease;
+}
+
+.articles_slider {
+  --swiper-navigation-size: 18px;
+  --swiper-navigation-color: #070707;
 }
 
 /* swal */
