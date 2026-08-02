@@ -2,7 +2,6 @@
 .navbar_fixed main {
   background: rgb(255, 255, 255);
   transition: background-color 0.2s ease;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
   color: black;
   display: flex;
   flex-direction: row-reverse;
@@ -31,7 +30,6 @@
   width: 100%;
   animation: fadeInDownBig 0.4s ease;
   left: 0;
-  width: 100%;
   top: 0;
   background: white;
   z-index: 999;

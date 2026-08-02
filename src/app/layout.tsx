@@ -8,7 +8,7 @@ export const metadata = {
   title: "SET Coffee",
   description: "SET Coffee project with Next v.13",
   icons: {
-    icon: "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/36190/coffee-logo-clipart-md.png",
+    icon: "/images/favicon.webp",
   },
 };
 
