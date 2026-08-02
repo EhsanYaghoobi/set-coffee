@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "SET Coffee",
-  description: "SET Coffee project with Next v.13",
+  description: "SET Coffee project with Next.js",
   icons: {
     icon: "/images/favicon.webp",
   },
