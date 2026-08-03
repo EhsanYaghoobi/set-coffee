@@ -29,7 +29,10 @@
       ],
       "@/configs/*": [
         "./configs/*"
-      ]
+      ],
+      "@/models/*": [
+        "./models/*"
+      ],
     },
     "target": "ES2017"
   },
