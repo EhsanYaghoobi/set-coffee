@@ -1,6 +1,6 @@
 import Swal, { SweetAlertOptions } from "sweetalert2";
 
-const successAlert = (title: string, confirmButtonText: string) =>
+const successAlert = (title: string, confirmButtonText?: string) =>
   Swal.fire({
     title,
     icon: "success",
