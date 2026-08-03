@@ -2,7 +2,8 @@ import { compare, hash } from "bcryptjs";
 import { sign, verify } from "jsonwebtoken";
 
 interface TokenPayload {
-  name: string;
+  name?: string;
+  email?: string;
 }
 
 const hashPassword = async (password: string): Promise<string> => {
