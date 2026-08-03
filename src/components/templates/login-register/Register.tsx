@@ -52,7 +52,11 @@ const Register = ({ showLoginForm }: RegisterProps) => {
     });
 
     if (res.status === 201) {
-      return successAlert("ثبت نام با موفقیت انجام شد", "ورود به پنل کاربری");
+      successAlert("ثبت نام با موفقیت انجام شد", "ورود به پنل کاربری");
+      setName("");
+      setPhone("");
+      setEmail("");
+      setPassword("");
     }
   };
 

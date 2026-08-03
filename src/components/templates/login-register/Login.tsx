@@ -47,7 +47,9 @@ const Login = ({ showRegisterForm }: LoginProps) => {
     });
 
     if (res.status === 200) {
-      successAlert("با موفقیت لاگین شدید");
+      successAlert("با موفقیت لاگین شدید", "ورود به پنل کاربری");
+      setPhoneOrEmail("");
+      setPassword("");
     } else if (res.status === 422 || res.status === 401) {
       errorAlert("کاربری با این اطلاات یافت ");
     } else if (res.status === 419) {

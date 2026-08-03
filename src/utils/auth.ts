@@ -24,21 +24,24 @@ const generateAccessToken = (data: TokenPayload): string => {
     throw new Error("AccessTokenSecretKey is not defined !!");
   }
   const token = sign({ ...data }, process.env.AccessTokenSecretKey, {
-    expiresIn: "60s",
+    expiresIn: "60d",
   });
   return token;
 };
 
-const verifyAccessToken = (token: string) => {
+const verifyAccessToken = (token: string): TokenPayload | null => {
   try {
     if (!process.env.AccessTokenSecretKey) {
       throw new Error("AccessTokenSecretKey is not defined !!");
     }
-    const tokenPayload = verify(token, process.env.AccessTokenSecretKey);
+    const tokenPayload = verify(
+      token,
+      process.env.AccessTokenSecretKey,
+    ) as TokenPayload;
     return tokenPayload;
   } catch (err) {
     console.log("Verify Access Token Error:", err);
-    return false;
+    return null;
   }
 };
 const generateRefreshToken = (data: TokenPayload): string => {
