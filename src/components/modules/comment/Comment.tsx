@@ -1,7 +1,7 @@
 import { FaStar } from "react-icons/fa";
 
 import styles from "./comment.module.css";
-const Comment = () => {
+const Comment = ({}) => {
   return (
     <section className={styles.comment}>
       <img src="/images/shahin.jpg" className={styles.avatar} alt="" />

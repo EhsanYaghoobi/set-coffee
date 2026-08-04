@@ -1,3 +1,5 @@
+import { InferSchemaType, Model } from "mongoose";
+
 const mongoose = require("mongoose");
 require("./Product");
 
@@ -29,6 +31,10 @@ const schema = new mongoose.Schema({
   },
 });
 
-const model = mongoose.models.Comment || mongoose.model("Comment", schema);
+export type IComment = InferSchemaType<typeof schema>;
+
+
+const model: Model<IComment> = mongoose.models.Comment || mongoose.model("Comment", schema);
+
 
 export default model;

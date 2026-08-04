@@ -5,7 +5,10 @@ import { useState } from "react";
 import Description from "./Description";
 import MoreInfoes from "./MoreInfoes";
 import Comments from "./Comments";
-const Tabs = () => {
+import { ProductProps } from "@/types/product";
+
+
+const Tabs = ({product}: ProductProps) => {
   const [tab, setTab] = useState("description");
   return (
     <div data-aos="fade-left" className={styles.tabs}>
@@ -59,7 +62,7 @@ const Tabs = () => {
           <MoreInfoes />
         </section>
         <section className={styles.tabs_content}>
-          <Comments />
+          <Comments product={JSON.parse(JSON.stringify(product))} />
         </section>
       </div>
     </div>
