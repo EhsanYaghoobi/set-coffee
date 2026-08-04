@@ -25,7 +25,7 @@ const Card = () => {
       </div>
 
       <div className={styles.details}>
-        <Link href={"/"}>
+        <Link href={`/product/123`}>
           کپسول قهوه SETpresso سازگار با دستگاه نسپرسو ( RED ) 10 عددی LIMITED
           EDITION
         </Link>
