@@ -5,9 +5,12 @@ import Link from "next/link";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaShoppingCart, FaRegHeart } from "react-icons/fa";
 
-function Navbar({ isLogin }) {
-  const [fixTop, setFixTop] = useState(false);
+interface NavbarProps {
+  isLogin: boolean;
+}
 
+function Navbar({ isLogin }: NavbarProps) {
+  const [fixTop, setFixTop] = useState(false);
   useEffect(() => {
     const fixNavbarToTop = () => {
       const currentScroll = window.pageYOffset;
