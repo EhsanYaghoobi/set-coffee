@@ -23,8 +23,8 @@ const schema = new mongoose.Schema({
     default: Date.now(),
     immutable: false,
   },
-  product: {
-    type: mongoose.Types.ObjectId,
+  productID: {
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Product",
   },
 });

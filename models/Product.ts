@@ -40,7 +40,7 @@ const schema = new mongoose.Schema({
   },
   comments: [
     {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Comment",
     },
   ],
