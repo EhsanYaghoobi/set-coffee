@@ -5,10 +5,16 @@ import { ProductProps } from "@/types/product";
 import { IComment } from "@/models/Comment";
 
 const Comments = ({ product }: ProductProps) => {
-  // const productID = product.comments.map((comment: IComment) => comment.productID)
   return (
     <div>
-      <p>نظرات ({product.comments.length}) :</p>
+      <p>
+        نظرات (
+        {
+          product.comments.filter((comment: IComment) => comment.isAccept)
+            .length
+        }
+        ) :
+      </p>
       <hr />
 
       <main className={styles.comments}>
@@ -18,9 +24,10 @@ const Comments = ({ product }: ProductProps) => {
             ده -10- عددی
           </p>
           <div>
-            {product.comments.map((comment: IComment) => (
-              <Comment key={comment._id} {...comment} />
-            ))}
+            {product.comments.map(
+              (comment: IComment) =>
+                comment.isAccept && <Comment key={comment._id} {...comment} />,
+            )}
           </div>
         </div>
         <div className={styles.form_bg}>

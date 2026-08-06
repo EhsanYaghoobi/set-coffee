@@ -6,6 +6,7 @@ import { FaTelegram, FaLinkedinIn, FaPinterest } from "react-icons/fa";
 import styles from "./details.module.css";
 import Breadcrumb from "./Breadcrumb";
 import { ProductProps } from "@/types/product";
+import { IComment } from "@/models/Comment";
 
 const Details = ({ product }: ProductProps) => {
   return (
@@ -22,7 +23,7 @@ const Details = ({ product }: ProductProps) => {
             <FaRegStar key={index} />
           ))}
         </div>
-        <p>(دیدگاه {product.comments.length} کاربر)</p>
+        <p>(دیدگاه ({product.comments.filter((comment: IComment) => comment.isAccept).length}) کاربر)</p>
       </div>
 
       <p className={styles.price}>{product.price.toLocaleString()} تومان</p>

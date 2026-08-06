@@ -2,7 +2,7 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 
 import styles from "./comment.module.css";
 import { IComment } from "@/models/Comment";
-const Comment = ({ username, score, body }: IComment) => {
+const Comment = ({ username, score, date, body }: IComment) => {
   return (
     <section className={styles.comment}>
       <img src="/images/shahin.jpg" className={styles.avatar} alt="" />
@@ -10,7 +10,7 @@ const Comment = ({ username, score, body }: IComment) => {
         <div className={styles.main_details}>
           <div className={styles.user_info}>
             <strong>{username}</strong>
-            <p>۲۸ آذر ۱۴۰۱</p>
+            <p>{new Date(date).toLocaleDateString("fa-IR")}</p>
           </div>
           <div className={styles.stars}>
             {new Array(score).fill(0).map((item, index) => (

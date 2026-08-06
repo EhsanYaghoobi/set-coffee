@@ -18,9 +18,12 @@ interface ProductPageProps {
 
 const product = async ({ params }: ProductPageProps) => {
   const user = await authUser();
-  const {id} = await params;
+  const { id } = await params;
   connectToDB();
-  const product = await ProductModel.findOne({ _id: id}).populate("comments");
+  const product = await ProductModel.findOne({ _id: id }).populate("comments");
+
+  const relatedProducts = await ProductModel.find({ smell: product.smell });
+
   return (
     <div className={styles.container}>
       <Navbar isLogin={user ? true : false} />
@@ -29,8 +32,8 @@ const product = async ({ params }: ProductPageProps) => {
           <Details product={JSON.parse(JSON.stringify(product))} />
           <Gallery />
         </div>
-        <Tabs product={JSON.parse(JSON.stringify(product))}/>
-        <MoreProducts />
+        <Tabs product={JSON.parse(JSON.stringify(product))} />
+        <MoreProducts relatedProducts={relatedProducts} />
       </div>
       <Footer />
     </div>

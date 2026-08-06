@@ -6,6 +6,7 @@ import Description from "./Description";
 import MoreInfoes from "./MoreInfoes";
 import Comments from "./Comments";
 import { ProductProps } from "@/types/product";
+import { IComment } from "@/models/Comment";
 
 
 const Tabs = ({product}: ProductProps) => {
@@ -50,7 +51,7 @@ const Tabs = ({product}: ProductProps) => {
         <li title="Shipping">
           <label htmlFor="comments" role="button">
             {" "}
-            نظرات ({product.comments.length}){" "}
+            نظرات ({product.comments.filter((comment: IComment) => comment.isAccept).length}){" "}
           </label>
         </li>
       </ul>
