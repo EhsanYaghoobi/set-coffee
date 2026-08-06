@@ -20,7 +20,8 @@ const product = async ({ params }: ProductPageProps) => {
   const user = await authUser();
   const {id} = await params;
   connectToDB();
-  const product = await ProductModel.findOne({ _id: id});
+  const product = await ProductModel.findOne({ _id: id}).populate("comments");
+  console.log("product", product)
   return (
     <div className={styles.container}>
       <Navbar isLogin={user ? true : false} />

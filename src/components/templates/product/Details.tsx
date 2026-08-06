@@ -1,4 +1,4 @@
-import { FaFacebookF, FaStar, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaRegStar, FaStar, FaTwitter } from "react-icons/fa";
 import { IoCheckmark } from "react-icons/io5";
 import { CiHeart } from "react-icons/ci";
 import { TbSwitch3 } from "react-icons/tb";
@@ -7,24 +7,20 @@ import styles from "./details.module.css";
 import Breadcrumb from "./Breadcrumb";
 import { ProductProps } from "@/types/product";
 
-
-
-const Details = ({product}: ProductProps) => {
+const Details = ({ product }: ProductProps) => {
   return (
     <main style={{ width: "63%" }}>
-      <Breadcrumb
-        title={product.name}
-      />
-      <h2>{product.name}
-      </h2>
+      <Breadcrumb title={product.name} />
+      <h2>{product.name}</h2>
 
       <div className={styles.rating}>
         <div>
-          <FaStar />
-          <FaStar />
-          <FaStar />
-          <FaStar />
-          <FaStar />
+          {new Array(product.score).fill(0).map((item, index) => (
+            <FaStar key={index} />
+          ))}
+          {new Array(5 - product.score).fill(0).map((item, index) => (
+            <FaRegStar key={index} />
+          ))}
         </div>
         <p>(دیدگاه {product.comments.length} کاربر)</p>
       </div>
@@ -62,7 +58,8 @@ const Details = ({product}: ProductProps) => {
       <div className={styles.details}>
         <strong>شناسه محصول: {product._id}</strong>
         <p>
-          <strong>برچسب:</strong> {product.tags.join(" ,")} </p>
+          <strong>برچسب:</strong> {product.tags.join(" ,")}{" "}
+        </p>
       </div>
 
       <div className={styles.share}>

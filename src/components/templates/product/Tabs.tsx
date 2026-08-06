@@ -13,25 +13,26 @@ const Tabs = ({product}: ProductProps) => {
   return (
     <div data-aos="fade-left" className={styles.tabs}>
       <input
+      defaultChecked={false}
         onClick={() => setTab("description")}
         type="radio"
         id="description"
         name="tab-control"
-        checked={tab == "description" && "checked"}
+        // checked={tab == "description" && "checked"}
       />
       <input
         onClick={() => setTab("moreInfoes")}
         type="radio"
         id="moreInfoes"
         name="tab-control"
-        checked={tab == "moreInfoes" && "checked"}
+        // checked={tab == "moreInfoes" && "checked"}
       />
       <input
         onClick={() => setTab("comments")}
         type="radio"
         id="comments"
         name="tab-control"
-        checked={tab == "comments" && "checked"}
+        // checked={tab == "comments" && "checked"}
       />
       <ul>
         <li title="Features">
@@ -49,7 +50,7 @@ const Tabs = ({product}: ProductProps) => {
         <li title="Shipping">
           <label htmlFor="comments" role="button">
             {" "}
-            نظرات (7){" "}
+            نظرات ({product.comments.length}){" "}
           </label>
         </li>
       </ul>
@@ -59,7 +60,7 @@ const Tabs = ({product}: ProductProps) => {
           <Description />
         </section>
         <section className={styles.tabs_content}>
-          <MoreInfoes />
+          <MoreInfoes product={JSON.parse(JSON.stringify(product))} />
         </section>
         <section className={styles.tabs_content}>
           <Comments product={JSON.parse(JSON.stringify(product))} />
