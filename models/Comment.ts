@@ -18,7 +18,7 @@ const schema = new mongoose.Schema({
   },
   score: {
     type: Number,
-    required: true,
+    default: 5,
   },
   date: {
     type: Date,
@@ -33,8 +33,7 @@ const schema = new mongoose.Schema({
 
 export type IComment = InferSchemaType<typeof schema>;
 
-
-const model: Model<IComment> = mongoose.models.Comment || mongoose.model("Comment", schema);
-
+const model: Model<IComment> =
+  mongoose.models.Comment || mongoose.model("Comment", schema);
 
 export default model;

@@ -5,6 +5,7 @@ import { ProductProps } from "@/types/product";
 import { IComment } from "@/models/Comment";
 
 const Comments = ({ product }: ProductProps) => {
+  // const productID = product.comments.map((comment: IComment) => comment.productID)
   return (
     <div>
       <p>نظرات ({product.comments.length}) :</p>
@@ -23,7 +24,7 @@ const Comments = ({ product }: ProductProps) => {
           </div>
         </div>
         <div className={styles.form_bg}>
-          <CommentForm />
+          <CommentForm productID={product._id} />
         </div>
       </main>
     </div>

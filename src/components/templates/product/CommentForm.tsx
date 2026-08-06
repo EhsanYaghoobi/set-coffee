@@ -1,6 +1,46 @@
 import { IoMdStar } from "react-icons/io";
 import styles from "./commentForm.module.css";
-const CommentForm = () => {
+import { useState } from "react";
+import { successAlert } from "@/utils/helper";
+import { IComment } from "@/models/Comment";
+
+const CommentForm = ({ productID }: { productID: string }) => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [body, setBody] = useState("");
+  const [score, setScore] = useState(5);
+
+  const setCommentScore = (score: number) => {
+    setScore(score);
+    successAlert("امتیاز شما با موفقیت ثبت شد", "باشه");
+  };
+
+  const submitComment = async () => {
+    const comment = {
+      username,
+      email,
+      body,
+      score,
+      productID,
+    };
+
+    const res = await fetch("/api/comments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(comment),
+    });
+
+    if (res.ok) {
+      successAlert("دیدگاه شما با موفقیت ثبت شد", "باشه");
+      setUsername("");
+      setEmail("");
+      setBody("");
+      setScore(5);
+    }
+  };
+
   return (
     <div className={styles.form}>
       <p className={styles.title}>دیدگاه خود را بنویسید</p>
@@ -11,11 +51,11 @@ const CommentForm = () => {
       <div className={styles.rate}>
         <p>امتیاز شما :</p>
         <div>
-          <IoMdStar />
-          <IoMdStar />
-          <IoMdStar />
-          <IoMdStar />
-          <IoMdStar />
+          <IoMdStar onClick={() => setCommentScore(5)} />
+          <IoMdStar onClick={() => setCommentScore(4)} />
+          <IoMdStar onClick={() => setCommentScore(3)} />
+          <IoMdStar onClick={() => setCommentScore(2)} />
+          <IoMdStar onClick={() => setCommentScore(1)} />
         </div>
       </div>
       <div className={styles.group}>
@@ -24,11 +64,13 @@ const CommentForm = () => {
           <span style={{ color: "red" }}>*</span>
         </label>
         <textarea
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
           id="comment"
           name="comment"
-          cols="45"
-          rows="8"
-          required=""
+          // cols="45"
+          // rows="8"
+          required
           placeholder=""
         ></textarea>
       </div>
@@ -38,14 +80,22 @@ const CommentForm = () => {
             نام
             <span style={{ color: "red" }}>*</span>
           </label>
-          <input type="text" />
+          <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            type="text"
+          />
         </div>
         <div className={styles.group}>
           <label htmlFor="">
             ایمیل
             <span style={{ color: "red" }}>*</span>
           </label>
-          <input type="email" />
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+          />
         </div>
       </div>
       <div className={styles.checkbox}>
@@ -56,7 +106,7 @@ const CommentForm = () => {
           می‌نویسم.
         </p>
       </div>
-      <button>ثبت</button>
+      <button onClick={submitComment}>ثبت</button>
     </div>
   );
 };
