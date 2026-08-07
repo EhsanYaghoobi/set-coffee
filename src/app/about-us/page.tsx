@@ -1,10 +1,12 @@
 import Breadcrumb from "@/components/modules/breadcrumb/Breadcrumb";
 import Footer from "@/components/modules/footer/Footer";
 import Navbar from "@/components/modules/navbar/Navbar";
+import connectToDB from "@/configs/db";
 import { authUser } from "@/lib/authUser";
 import styles from "@/styles/aboutUs.module.css";
 
 const page = async () => {
+  await connectToDB();
   const user = await authUser();
 
   return (

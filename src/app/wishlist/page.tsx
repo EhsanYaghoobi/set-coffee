@@ -21,7 +21,7 @@ interface WishlistItem {
 
 const page = async () => {
   let wishes : WishlistItem[]= [];
-  connectToDB();
+  await connectToDB();
   const user = await authUser();
   if (user) {
     wishes = await WishlistModel.find({ user: user._id })

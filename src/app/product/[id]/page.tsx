@@ -17,9 +17,9 @@ interface ProductPageProps {
 }
 
 const product = async ({ params }: ProductPageProps) => {
+  await connectToDB();
   const user = await authUser();
   const { id } = await params;
-  connectToDB();
   const product = await ProductModel.findOne({ _id: id }).populate("comments");
 
   const relatedProducts = await ProductModel.find({ smell: product.smell });
@@ -33,7 +33,7 @@ const product = async ({ params }: ProductPageProps) => {
           <Gallery />
         </div>
         <Tabs product={JSON.parse(JSON.stringify(product))} />
-        <MoreProducts relatedProducts={relatedProducts} />
+        <MoreProducts relatedProducts={JSON.parse(JSON.stringify(relatedProducts))} />
       </div>
       <Footer />
     </div>

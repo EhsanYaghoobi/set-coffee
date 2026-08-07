@@ -8,63 +8,52 @@ import Comments from "./Comments";
 import { ProductProps } from "@/types/product";
 import { IComment } from "@/models/Comment";
 
-
-const Tabs = ({product}: ProductProps) => {
+const Tabs = ({ product }: ProductProps) => {
   const [tab, setTab] = useState("description");
+
   return (
     <div data-aos="fade-left" className={styles.tabs}>
-      <input
-      defaultChecked={false}
-        onClick={() => setTab("description")}
-        type="radio"
-        id="description"
-        name="tab-control"
-        // checked={tab == "description" && "checked"}
-      />
-      <input
-        onClick={() => setTab("moreInfoes")}
-        type="radio"
-        id="moreInfoes"
-        name="tab-control"
-        // checked={tab == "moreInfoes" && "checked"}
-      />
-      <input
-        onClick={() => setTab("comments")}
-        type="radio"
-        id="comments"
-        name="tab-control"
-        // checked={tab == "comments" && "checked"}
-      />
       <ul>
-        <li title="Features">
-          <label htmlFor="description" role="button">
-            {" "}
-            توضیحات{" "}
-          </label>
+        <li>
+          <button
+            className={tab === "description" ? styles.active_tab : ""}
+            onClick={() => setTab("description")}
+          >
+            توضیحات
+          </button>
         </li>
-        <li title="Delivery Contents">
-          <label htmlFor="moreInfoes" role="button">
-            {" "}
-            اطلاعات بیشتر{" "}
-          </label>
+        <li>
+          <button
+            className={tab === "moreInfoes" ? styles.active_tab : ""}
+            onClick={() => setTab("moreInfoes")}
+          >
+            اطلاعات بیشتر
+          </button>
         </li>
-        <li title="Shipping">
-          <label htmlFor="comments" role="button">
-            {" "}
-            نظرات ({product.comments.filter((comment: IComment) => comment.isAccept).length}){" "}
-          </label>
+        <li>
+          <button
+            className={tab === "comments" ? styles.active_tab : ""}
+            onClick={() => setTab("comments")}
+          >
+            نظرات (
+            {
+              product.comments.filter((comment: IComment) => comment.isAccept)
+                .length
+            }
+            )
+          </button>
         </li>
       </ul>
 
       <div className={styles.contents}>
-        <section className={styles.tabs_content}>
-          <Description />
-        </section>
-        <section className={styles.tabs_content}>
-          <MoreInfoes product={JSON.parse(JSON.stringify(product))} />
-        </section>
-        <section className={styles.tabs_content}>
-          <Comments product={JSON.parse(JSON.stringify(product))} />
+        <section>
+          {tab === "description" && <Description />}
+          {tab === "moreInfoes" && (
+            <MoreInfoes product={JSON.parse(JSON.stringify(product))} />
+          )}
+          {tab === "comments" && (
+            <Comments product={JSON.parse(JSON.stringify(product))} />
+          )}
         </section>
       </div>
     </div>
