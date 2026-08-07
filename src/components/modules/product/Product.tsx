@@ -34,7 +34,7 @@ const Card = ({ name, _id, price }: IProduct) => {
           <FaRegStar />
           <FaRegStar />
         </div>
-        <span>{price.toLocaleString()} تومان</span>
+        <span>{price?.toLocaleString()} تومان</span>
       </div>
     </div>
   );
